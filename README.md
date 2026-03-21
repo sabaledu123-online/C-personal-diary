@@ -71,7 +71,7 @@ but are excluded from all views and searches.
 
 ## Technical Notes
 
-- Storage: fixed-size binary records using fwrite / fread
+- Storage: fixed-size binary records using fwrite / fread 
 - Updates: in-place overwrites via fseek, offset = (id - 1) * sizeof(DiaryEntry)
 - IDs: strictly sequential and 1-based; do not manually edit the .dat file
 - Soft delete: is_deleted flag per record, never physically removed
@@ -88,11 +88,11 @@ but are excluded from all views and searches.
 
 ## Author
 
-`... Alfred ...`
--> Implemented the definitons for almost all functions. (except a few involving file handling)
--> Added own quriks to the program like clearscreen() and showdots() 
--> Output structure and formatting.
--> Testing and finalization. (yet it's only the first draft.)
+`... Alfred ...`<br>
+-> Implemented the definitons for almost all functions. (except a few involving file handling)<br>
+-> Added own quriks to the program like clearscreen() and showdots() <br>
+-> Output structure and formatting.<br>
+-> Testing and finalization. (yet it's only the first draft.)<br>
 
 
 ```

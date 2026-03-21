@@ -30,11 +30,13 @@ diary/<br>
 
 ## Build
 
-Requires GCC or any C99-compatible compiler.
+Requires GCC or any C99-compatible compiler. 
+From src run: 
 
     gcc main.c diary.c file_handler.c menu.c utils.c -o diary
 
 Or with the Makefile:
+(pending to add)
 
     make
 
@@ -87,3 +89,16 @@ but are excluded from all views and searches.
 ## Author
 
 `... Alfred ...`
+-> Implemented the definitons for almost all functions. (except a few involving file handling)
+-> Added own quriks to the program like clearscreen() and showdots() 
+-> Output structure and formatting.
+-> Testing and finalization. (yet it's only the first draft.)
+
+
+```
+Ps: Claude was involved in certain areas of the file.
+1) Generating project structure.
+2) Header files (except personally added declarations just for the fun of it.)
+3) File handling.
+(Am unfamiliar with file handling in C )
+```

@@ -22,7 +22,7 @@ static void get_input(char *buffer, int size, const char *prompt)
         else
         {
             // Over-limit case: The newline is still in the 'stdin' pipe.
-            // We must loop through and "eat" the remaining chars.
+            // looping through and "eat" the remaining chars.
             int c;
             while ((c = getchar()) != '\n' && c != EOF)
                 ;
@@ -35,6 +35,8 @@ void addEntry(void)
 {
     DiaryEntry entry;
     memset(&entry, 0, sizeof(DiaryEntry));
+    //Important to make sure the each diary entry occupies exactly the total bytes req for DiaryEntry
+    // Necessary as some critical functioning of app assumes that the entry is exactly the size of DiaryEntry struct.
 
     entry.id = getNextId();
     entry.date = getCurrentDate();

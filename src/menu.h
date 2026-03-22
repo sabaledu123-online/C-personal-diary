@@ -1,15 +1,15 @@
 #pragma once
 
 
-/* ─── Menu & CLI Control ─────────────────────────────────────── */
+// Menu and routing functions.
 
-/* Prints the main menu options to stdout */
+//displays the main menu to the user.
 void displayMainMenu(void);
 
-/* Reads user choice and dispatches to appropriate diary function */
+// the router to correct function/action as per the user choice
 void handleUserChoice(int choice);
 
-/* Prints and handles the search sub-menu (by date or keyword) */
+// displays the search menu 
 void displaySearchMenu(void);
 
 

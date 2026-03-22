@@ -1,15 +1,16 @@
 #pragma once
 
-/* ─── Constants ─────────────────────────────────────────────── */
+// constants used.
 
-#define MAX_TITLE_LEN    100
-#define MAX_CONTENT_LEN  2000
-#define DATA_FILE        "data/diary.dat"
-#define MAX_ENTRIES      30
+#define MAX_TITLE_LEN 100
+#define MAX_CONTENT_LEN 2000
+#define DATA_FILE "data/diary.dat"
+#define MAX_ENTRIES 30
 
-/* ─── Structs ────────────────────────────────────────────────── */
+// Structs
 
-typedef struct {
+typedef struct
+{
     int day;
     int month;
     int year;
@@ -17,32 +18,47 @@ typedef struct {
     int minute;
 } DiaryDate;
 
-typedef struct {
-    int       id;
-    char      title[MAX_TITLE_LEN];
-    char      content[MAX_CONTENT_LEN];
+typedef struct
+{
+    int id;
+    char title[MAX_TITLE_LEN];
+    char content[MAX_CONTENT_LEN];
     DiaryDate date;
-    int       is_deleted;   /* 0 = active | 1 = soft-deleted */
+    int is_deleted;
+    // 0 = active & 1 = soft-deleted (not truly deleted but deactivated)
 } DiaryEntry;
 
-/* ─── Core Operations ────────────────────────────────────────── */
+// -- core operations --
 
-/* Collects title + content from user, assigns ID, persists to file */
+// gets details about , Title and content from user and saves it to our file.
+// uses saveNewEntry() for saving to file.
 void addEntry(void);
 
-/* Loads and displays all active (non-deleted) entries */
+/*
+    shows all the entries present with is_Deleted set to 0 .
+    if is_deleted = 1 (set to 1) : considered deleted (soft-deleting)
+    thus skipped in display.
+ */
+
 void viewEntries(void);
 
-/* Finds and displays entries matching a date */
+// Search By date (display all matching entries)
 void searchByDate(DiaryDate target);
 
-/* Finds and displays entries where title or content contains keyword */
+// search and display all entries containing the given keyword.
 void searchByKeyword(const char *keyword);
 
+// search that one particular entry (as ID -> unique to each entry.)
 void searchByID(const int ID);
 
-/* Locates entry by ID, prompts for new content, updates file */
+// get's entry by id (well search for it first then enter the ID I guess :( )
+// Could use the serach feautre's help for improvement.
 void editEntry(int id);
 
-/* Sets is_deleted = 1 for the given entry ID, updates file */
+/*
+    sets is_deleted = 1 ,
+    doesn't actually delete the record/entry from file
+    but just deactivates it for search , edit operations.
+*/
+
 void deleteEntry(int id);

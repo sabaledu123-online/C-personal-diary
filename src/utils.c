@@ -4,14 +4,13 @@
 #include <time.h>
 
 #ifdef _WIN32
-    #include <windows.h>   /* Sleep()  */
+    #include <windows.h>   //for sleep function
 #else
-    #include <unistd.h>    /* usleep() */
+    #include <unistd.h>    
 #endif
 
-#include <stdlib.h>        /* system(), strtol() */
+#include <stdlib.h>       
 
-/* ─── Input Handling ─────────────────────────────────────────── */
 
 void clearInputBuffer(void)
 {
@@ -31,7 +30,7 @@ void readLine(char *buf, int max_len)
     }
 }
 
-//  :: Validation ::
+
 
 int validateTitle(const char *title) {
     if (title == NULL) return 0;
@@ -39,7 +38,7 @@ int validateTitle(const char *title) {
     return (len > 0 && len <= MAX_TITLE_LEN - 1);
 }
 
-/* Returns 1 if the given ID exists and is not deleted */
+
 int isValidActiveId(int id)
 {
     if (id <= 0)
@@ -65,9 +64,7 @@ int isValidActiveId(int id)
     return found;
 }
 
-// :: Date & Time
 
-// fills the current date and time in the date in the diary date.
 DiaryDate getCurrentDate(void)
 {
     DiaryDate d;
@@ -82,7 +79,7 @@ DiaryDate getCurrentDate(void)
     return d;
 }
 
-// Checks for matching of day/month/year of two diary entries.
+
 int datesMatch(DiaryDate a, DiaryDate b)
 {
     if (a.year == b.year &&
@@ -93,7 +90,7 @@ int datesMatch(DiaryDate a, DiaryDate b)
         return 0;
 }
 
-/* ─── Display Formatting ─────────────────────────────────────── */
+
 
 void displayTitle(const char *title)
 {
@@ -124,22 +121,19 @@ void displayTitle(const char *title)
     printSeparator(2, totalWidth);
 }
 
-/* Prints a single DiaryEntry in formatted layout */
 void printEntry(const DiaryEntry *entry)
 {
-    printSeparator(1, 20);
     printf("  ID      : %d\n", entry->id);
     printf("  Title   : %s\n", entry->title);
     printf("  Date    : %02d/%02d/%04d  %02d:%02d\n",
         entry->date.day, entry->date.month, entry->date.year,
         entry->date.hour, entry->date.minute);
-    printSeparator(3, strlen(entry->content)+2);
+    printSeparator(3, 80);
     printf("\n %s\n", entry->content);
-    printSeparator(3, strlen(entry->content)+2);
+    printSeparator(3, 80);
     putchar('\n');
 }
 
-/* Prints a visual separator line */
 
 void printSeparator(int symbolIndex, int width)
 {
@@ -156,7 +150,7 @@ void printSeparator(int symbolIndex, int width)
     putchar('\n'); // Move to next line after printing
 }
 
-// decorative separator
+
 void decSeparator(int index, int repeats)
 {
     const char *patterns[] = {

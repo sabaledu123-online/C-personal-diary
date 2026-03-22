@@ -30,9 +30,7 @@ static void get_input(char *buffer, int size, const char *prompt)
     }
 }
 
-/* ─── Core Operations ────────────────────────────────────────── */
 
-/* Collects title + content from user, assigns ID, persists to file */
 void addEntry(void)
 {
     DiaryEntry entry;
@@ -55,7 +53,7 @@ void addEntry(void)
     get_input(entry.content, MAX_CONTENT_LEN, "(3) Details: \n\t");
 do
     {
-        printf("\nDo you wish to add this entry?\n Yes -> 1\n No -> 2\n>>> ");
+        printf("\nDo you wish to add this entry?\n Yes -> 1\n No -> 2\n >>> ");
         scanf("%d", &response);
         clearInputBuffer();
 
@@ -75,7 +73,7 @@ do
     } while (response != 1 && response != 2);
 }
 
-/* ─── View All Entries ───────────────────────────────────────── */
+
 
 void viewEntries(void)
 {
@@ -100,7 +98,6 @@ void viewEntries(void)
         printf("  %d entr%s found.\n\n", found, found == 1 ? "y" : "ies");
 }
 
-// Search By date
 
 void searchByDate(DiaryDate target)
 {
@@ -157,7 +154,7 @@ void searchByKeyword(const char *keyword)
         printf("  %d entr%s found.\n\n", found, found == 1 ? "y" : "ies");
 }
 
-/* ─── Search by ID ───────────────────────────────────────────── */
+//Search by ID
 
 void searchByID(const int ID)
 {
@@ -178,7 +175,7 @@ void searchByID(const int ID)
     printf("App: \n\tNo active entry with ID : %d.\n\n", ID);
 }
 
-/* ─── Edit Entry ─────────────────────────────────────────────── */
+// Editing and updating entry
 
 void editEntry(int id)
 {
@@ -237,7 +234,8 @@ void editEntry(int id)
     printf("App: \n\tNo active entry with ID %d.\n\n", id);
 }
 
-/* ─── Delete Entry ───────────────────────────────────────────── */
+// Soft deletes entry: 
+//Not actually deleted but is_deleted = 1, so skipped as a whole in entire search / editing opertations.
 
 void deleteEntry(int id)
 {

@@ -13,7 +13,7 @@ static void ensureDataDir(void) {
 #endif
 }
 
-/* Reads all records into entries[], returns total count loaded */
+
 int loadAllEntries(DiaryEntry entries[], int max) {
     FILE *fp = fopen(DATA_FILE, "rb");
     if (!fp) return 0;
@@ -26,27 +26,23 @@ int loadAllEntries(DiaryEntry entries[], int max) {
     return count;
 }
 
-/* Appends a new entry to the end of the data file */
+
 void saveNewEntry(const DiaryEntry *entry) {
     ensureDataDir();    
     FILE *fp = fopen(DATA_FILE, "ab");
     if (!fp) {
-        fprintf(stderr, "[!] Error: Could not open file for writing.\n");
+        fprintf(stderr, ">> Error: Could not open file for writing.\n");
         return;
     }
     fwrite(entry, sizeof(DiaryEntry), 1, fp);
     fclose(fp);
 }
 
-/*
-    Overwrites a single record in-place using fseek.
-    Offset = (id - 1) * sizeof(DiaryEntry)
-    IDs are 1-based, file records are 0-indexed.
-*/
+
 void updateEntryById(const DiaryEntry *entry) {
     FILE *fp = fopen(DATA_FILE, "r+b");
     if (!fp) {
-        fprintf(stderr, "[!] Error: Could not open file for update.\n");
+        fprintf(stderr, ">> Error: Could not open file for update.\n");
         return;
     }
 
@@ -56,7 +52,7 @@ void updateEntryById(const DiaryEntry *entry) {
     fclose(fp);
 }
 
-/* Returns total records in file including soft-deleted ones */
+
 int getEntryCount(void) {
     FILE *fp = fopen(DATA_FILE, "rb");
     if (!fp) return 0;
@@ -68,7 +64,7 @@ int getEntryCount(void) {
     return (int)(size / (long)sizeof(DiaryEntry));
 }
 
-/* Next available ID = total record count + 1 */
+
 int getNextId(void) {
     return getEntryCount() + 1;
 }

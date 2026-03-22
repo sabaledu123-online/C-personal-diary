@@ -92,7 +92,7 @@ void handleUserChoice(int choice) {
                 searchByDate(target);
 
             } else if (searchChoice == 2) {
-                /* Search by ID */
+                // search by ID
                 int id;
                 clearScreen();
                 printf("  Enter ID: ");
@@ -140,7 +140,7 @@ void handleUserChoice(int choice) {
     }
 }
 
-/* Prints and handles the search sub-menu (by date or keyword) */
+// Prints and handles the search sub-menu (by date , ID or by keyword) 
 void displaySearchMenu(void){
     printSeparator(2, 20);
     displayTitle("-- Search For Entries --");
